@@ -29,21 +29,44 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
-  // reset the website body with the new html output
-  document.querySelector("#widget_content").innerHTML = `<div class="widget">
+  let role =
+    // reset the website body with the new html output
+    (document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+          
+          <h1>${variables.name !== null ? variables.name : "nombre"}  ${
+      variables.lastname !== null ? variables.lastname : "apellido"
+    }</h1>
+
+          <h2>${variables.role !== null ? variables.role : "especialidad"}</h2>
+          <h3>${variables.city !== null ? variables.city : "ciudad"}</h3>
+          <h3>${variables.country !== null ? variables.country : "pais"}</h3>
+          
+          <ul class=${
+            variables.socialMediaPosition !== null
+              ? variables.socialMediaPosition
+              : ""
+          } >
+        
+            <li><a href="https://twitter.com/${
+              variables.twitter !== null ? variables.twitter : ""
+            }"><i class="fa fa-twitter"></i></a></li>
+
+            <li><a href="https://github.com/${
+              variables.github !== null ? variables.github : ""
+            }"><i class="fa fa-github"></i></a></li>
+
+            <li><a href="https://linkedin.com/${
+              variables.linkedin !== null ? variables.linkedin : ""
+            }"><i class="fa fa-linkedin"></i></a></li>
+            
+            <li><a href="https://instagram.com/${
+              variables.instagram !== null ? variables.instagram : ""
+            }"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
-    `;
+    `);
 }
 
 /**
@@ -61,7 +84,7 @@ window.onload = function() {
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: "alesanchezr",
+    github: null,
     linkedin: null,
     instagram: null,
     name: null,
